@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulse Digital Index | Understand Your Digital Maturity</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        button { font-family: inherit; cursor: pointer; }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 16px 6vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: "Instrument Sans", sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-mark {
+            width: 24px;
+            height: 24px;
+            background: #000;
+            position: relative;
+        }
+
+        .logo-mark::before {
+            content: "";
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #FF6B35;
+            top: 5px;
+            left: 5px;
+        }
+
+        .logo-mark::after {
+            content: "";
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            bottom: 5px;
+            right: 5px;
+        }
+
+        .nav-links { display: flex; gap: 40px; font-size: 13px; color: #666; font-weight: 500; }
+        .nav-links a:hover { color: #000; }
+        .nav-button {
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 0;
+            padding: 10px 18px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 140px 0 80px 0;
+            display: grid;
+            grid-template-columns: 45% 55%;
+            align-items: stretch;
+            gap: 0;
+            position: relative;
+            min-height: 650px;
+        }
+
+        .hero-text {
+            padding: 60px 6vw 60px 6vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .eyebrow {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-family: "Instrument Sans", sans-serif;
+            font-size: clamp(48px, 5vw, 72px);
+            line-height: 1.15;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .hero h1 span {
+            color: #FF6B35;
+        }
+
+        .hero-description {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 480px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+        }
+
+        .primary-button, .secondary-button {
+            padding: 13px 24px;
+            border-radius: 0;
+            font-size: 13px;
+            font-weight: 600;
+            border: none;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .primary-button {
+            background: #000;
+            color: white;
+        }
+
+        .secondary-button {
+            background: transparent;
+            border: 2px solid #000;
+            color: #000;
+        }
+
+        .secondary-button:hover { background: #f5f5f5; }
+
+        .hero-visual {
+            background: linear-gradient(135deg, #f0f0f0 0%, #e5e5e5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            text-align: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* PERSONA SECTION */
+        .personas {
+            padding: 100px 6vw;
+            background: #fff;
+        }
+
+        .section-label {
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-family: "Instrument Sans", sans-serif;
+            font-size: clamp(42px, 5.5vw, 64px);
+            line-height: 1.15;
+            letter-spacing: -2px;
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 span {
+            color: #FF6B35;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 550px;
+        }
+
+        .personas-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+        }
+
+        .persona-card {
+            background: transparent;
+            border: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 50px;
+            align-items: start;
+            overflow: visible;
+        }
+
+        .persona-card:nth-child(even) {
+            grid-template-columns: 1fr 280px;
+            direction: rtl;
+        }
+
+        .persona-card:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .persona-image-placeholder {
+            width: 280px;
+            height: 280px;
+            background: #e8e8e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 13px;
+            text-align: center;
+            flex-shrink: 0;
+            font-weight: 500;
+        }
+
+        .persona-wrapper {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 20px;
+        }
+
+        .persona-content h3 {
+            font-family: "Instrument Sans", sans-serif;
+            font-size: 28px;
+            margin-bottom: 16px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .persona-tag {
+            display: block;
+            font-size: 10px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .persona-content p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .persona-need {
+            font-size: 14px;
+            color: #666;
+            padding: 0;
+            background: transparent;
+            border: none;
+            border-left: 3px solid #FF6B35;
+            border-radius: 0;
+            margin-top: 0;
+            padding-left: 20px;
+        }
+
+        .persona-need strong {
+            color: #000;
+        }
+
+        /* SIMPLE VALUE PROP */
+        .value-prop {
+            padding: 100px 6vw;
+            background: #000;
+            color: white;
+        }
+
+        .value-prop .section-label {
+            color: #666;
+        }
+
+        .value-prop h2 {
+            font-family: "Instrument Sans", sans-serif;
+            font-size: clamp(44px, 6vw, 72px);
+            line-height: 1.1;
+            letter-spacing: -2px;
+            max-width: 700px;
+            margin-bottom: 60px;
+        }
+
+        .value-prop h2 span { color: #FF6B35; }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px 80px;
+            margin-top: 0;
+        }
+
+        .value-item {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .value-item h3 {
+            font-family: "Instrument Sans", sans-serif;
+            font-size: 22px;
+            margin-bottom: 0;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .value-item p {
+            color: #aaa;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        /* PROCESS */
+        .process {
+            padding: 100px 6vw;
+            background: #f8f8f8;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .process-card {
+            padding: 0;
+            background: transparent;
+            border: none;
+        }
+
+        .process-card::before {
+            content: "";
+            display: block;
+            width: 2px;
+            height: 40px;
+            background: #FF6B35;
+            margin-bottom: 30px;
+        }
+
+        .process-number {
+            font-size: 11px;
+            color: #999;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .process-card h3 {
+            font-family: "Instrument Sans", sans-serif;
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .process-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* CTA */
+        .cta {
+            margin: 0;
+            border-radius: 0;
+            background: #FF6B35;
+            padding: 100px 6vw;
+            text-align: left;
+        }
+
+        .cta h2 {
+            font-family: "Instrument Sans", sans-serif;
+            font-size: clamp(42px, 6vw, 68px);
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            color: white;
+        }
+
+        .cta p {
+            max-width: 500px;
+            margin: 0 0 40px 0;
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .cta button {
+            background: white;
+            color: #FF6B35;
+            border: none;
+            padding: 13px 24px;
+            border-radius: 0;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .cta button:hover {
+            background: #f5f5f5;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 60px 6vw 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            color: #999;
+            font-size: 12px;
+            background: #fff;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-logo {
+            color: #000;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .footer-content {
+            line-height: 1.8;
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1000px) {
+            .nav-links { display: none; }
+            .hero { grid-template-columns: 1fr; padding: 140px 0 60px 0; }
+            .hero-text { padding: 40px 6vw; }
+            .hero-visual { grid-column: span 1; }
+            .personas-grid { gap: 40px; }
+            .persona-card { grid-template-columns: 1fr; gap: 30px; }
+            .persona-card:nth-child(even) { grid-template-columns: 1fr; }
+            .persona-image-placeholder { width: 100%; height: 300px; }
+            .value-grid { grid-template-columns: 1fr; }
+            .process-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+            footer { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        @media (max-width: 600px) {
+            .navbar { padding: 12px 6vw; }
+            .nav-button { display: none; }
+            .hero { padding-top: 120px; }
+            .personas, .value-prop, .process, .cta { padding-left: 6vw; padding-right: 6vw; }
+            .hero-actions { flex-direction: column; }
+            .hero-actions button { width: 100%; }
+            .section-header h2 { font-size: clamp(32px, 5vw, 44px); }
+            .process-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <div class="logo-mark"></div>
+            PULSE DIGITAL INDEX
+        </a>
+        <div class="nav-links">
+            <a href="#personas">Who It's For</a>
+            <a href="#how">How It Works</a>
+            <a href="#cta">Get Started</a>
+        </div>
+        <button class="nav-button" onclick="openAssessment()">
+            Request Assessment
+        </button>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-text">
+            <div class="eyebrow">Understanding Digital Transformation</div>
+            <h1>
+                Is your digital investment
+                actually <span>working?</span>
+            </h1>
+            <p class="hero-description">
+                Most organizations can't clearly see what's working and what's holding them back. PDI gives you that clarity.
+            </p>
+            <div class="hero-actions">
+                <button class="primary-button" onclick="openAssessment()">
+                    Take the Assessment
+                </button>
+                <button class="secondary-button" onclick="scrollTo('personas')">
+                    See Who It's For
+                </button>
+            </div>
+        </div>
+        <div class="hero-visual" style="background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop') center/cover;">
+        </div>
+    </section>
+
+    <!-- WHO IT'S FOR -->
+    <section class="personas" id="personas">
+        <div class="section-label">Who It's For</div>
+        <div class="section-header">
+            <h2>Built from real <span>conversations</span></h2>
+            <p>PDI is designed around actual users and the problems they face.</p>
+        </div>
+
+        <div class="personas-grid">
+
+            <!-- Persona 1: Older User -->
+            <div class="persona-card">
+                <div class="persona-image-placeholder" style="background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop') center/cover; color: transparent;">[Add real photo]</div>
+                <div class="persona-wrapper">
+                    <div class="persona-content">
+                        <div class="persona-tag">Retired / Low Digital Literacy</div>
+                        <h3>"Did it work?"</h3>
+                        <p>Needs unmistakable confirmation. Won't trust a subtle icon. Lives on fixed income, so mistakes feel costly.</p>
+                        <div class="persona-need">
+                            <strong>The barrier:</strong> They repeat actions, ask for verification, or skip digital entirely. Confirmation design has to earn their trust.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Persona 2: Tech-Native Student -->
+            <div class="persona-card">
+                <div class="persona-image-placeholder" style="background: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop') center/cover; color: transparent;">[Add real photo]</div>
+                <div class="persona-wrapper">
+                    <div class="persona-content">
+                        <div class="persona-tag">Young, Smartphone-First</div>
+                        <h3>"This feels clunky"</h3>
+                        <p>Benchmarks everything against fintech apps. Wants speed, social features, and visible progress toward goals.</p>
+                        <div class="persona-need">
+                            <strong>The barrier:</strong> Slow loading or clunky onboarding feels like a product failure. They abandon fast.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Persona 3: SME Owner -->
+            <div class="persona-card">
+                <div class="persona-image-placeholder" style="background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop') center/cover; color: transparent;">[Add real photo]</div>
+                <div class="persona-wrapper">
+                    <div class="persona-content">
+                        <div class="persona-tag">Small Business Owner</div>
+                        <h3>"What's my margin?"</h3>
+                        <p>Thinks in profit and loss daily. Every fee and every friction point feels like a direct cost to the business.</p>
+                        <div class="persona-need">
+                            <strong>The barrier:</strong> Can't see profit at a glance. Platform fees don't flex with seasonal cash flow.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Persona 4: Corporate Accountant -->
+            <div class="persona-card">
+                <div class="persona-image-placeholder" style="background: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop') center/cover; color: transparent;">[Add real photo]</div>
+                <div class="persona-wrapper">
+                    <div class="persona-content">
+                        <div class="persona-tag">Finance Professional</div>
+                        <h3>"Can I audit this?"</h3>
+                        <p>Every number may be audited later. Needs approval workflows and clear audit trails for large transactions.</p>
+                        <div class="persona-need">
+                            <strong>The barrier:</strong> Missing approvals force workarounds. Slow bulk actions compound at scale.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Persona 5: Diaspora User -->
+            <div class="persona-card">
+                <div class="persona-image-placeholder" style="background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop') center/cover; color: transparent;">[Add real photo]</div>
+                <div class="persona-wrapper">
+                    <div class="persona-content">
+                        <div class="persona-tag">Sends Money Home</div>
+                        <h3>"What will they get?"</h3>
+                        <p>Can't verify in person. Fees and rates matter because they determine what actually arrives. No branch fallback.</p>
+                        <div class="persona-need">
+                            <strong>The barrier:</strong> Transfer confirmation only proves money moved, not that it was used as intended. Trust built entirely on screen.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- WHAT PDI DOES -->
+    <section class="value-prop">
+        <div class="section-label">The Assessment</div>
+        <h2>Clear picture. Clear <span>priorities.</span></h2>
+
+        <div class="value-grid">
+            <div class="value-item">
+                <h3>See across 8 dimensions</h3>
+                <p>Strategy, customer experience, technology, data, innovation, operations, people, and channels. Real outcomes, not buzzwords.</p>
+            </div>
+            <div class="value-item">
+                <h3>Find what's holding you back</h3>
+                <p>Identify which barriers matter most and why your teams are struggling with digital adoption.</p>
+            </div>
+            <div class="value-item">
+                <h3>Know where to invest first</h3>
+                <p>Ranked roadmap by impact. Which initiatives move the needle most for your organization.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="process" id="how">
+        <div class="section-label">The Journey</div>
+        <div class="section-header">
+            <h2>From insight to impact in <span>5 steps</span></h2>
+        </div>
+
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="process-number">01 Discover</div>
+                <h3>Understand Your Organization</h3>
+                <p>Learn your context, goals, and current state.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">02 Measure</div>
+                <h3>Assess Maturity</h3>
+                <p>Evaluate across 8 dimensions using proven criteria.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">03 Benchmark</div>
+                <h3>Compare Performance</h3>
+                <p>See how you stand against peers and industry standards.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">04 Prioritize</div>
+                <h3>Create Roadmap</h3>
+                <p>Identify highest-impact initiatives ranked by effect.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">05 Track</div>
+                <h3>Measure Progress</h3>
+                <p>Monitor change and prove ROI over time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="cta">
+        <h2>Ready to see what's actually holding you back?</h2>
+        <p>
+            Let's talk. We'll spend time understanding your organization, your teams, and the real barriers they face. Then we'll show you exactly where to focus first.
+        </p>
+        <button onclick="openAssessment()">
+            Start a Conversation
+        </button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div>
+            <div class="footer-logo">PULSE DIGITAL INDEX</div>
+            <div class="footer-content">
+                Built by talking to real people. Designed for real organizations. Made to move the needle.
+            </div>
+        </div>
+        <div class="footer-content">
+            © 2026 Pulse Digital Index<br><br>
+            <a href="#" style="color: #999;">Privacy</a> · <a href="#" style="color: #999;">Terms</a> · <a href="#" style="color: #999;">Contact</a>
+        </div>
+    </footer>
+
+    <script>
+        function scrollTo(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openAssessment() {
+            alert(
+                "Assessment request form coming soon.\n\n" +
+                "Thank you for your interest in PDI."
+            );
+        }
+
+        // Fade in effect
+        const cards = document.querySelectorAll('.persona-card, .process-card');
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+        });
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => observer.observe(card));
+    </script>
+
+</body>
+</html>
