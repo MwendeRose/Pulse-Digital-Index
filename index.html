@@ -4,489 +4,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pulse Digital Index | Understand Your Digital Maturity</title>
+    <meta name="description" content="Pulse Digital Index helps organizations see what is working in their digital investment, what is holding them back, and where to invest first.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "DM Sans", sans-serif;
-            background: #ffffff;
-            color: #1a1a1a;
-            line-height: 1.6;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+        body { font-family: "DM Sans", sans-serif; background: #ffffff; color: #1a1a1a; line-height: 1.6; }
         a { color: inherit; text-decoration: none; }
         button { font-family: inherit; cursor: pointer; }
+        :focus-visible { outline: 3px solid #FF6B35; outline-offset: 3px; }
 
         /* NAVBAR */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 16px 6vw;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            z-index: 100;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: "Instrument Sans", sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .logo-mark {
-            width: 24px;
-            height: 24px;
-            background: #000;
-            position: relative;
-        }
-
-        .logo-mark::before {
-            content: "";
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: #FF6B35;
-            top: 5px;
-            left: 5px;
-        }
-
-        .logo-mark::after {
-            content: "";
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: white;
-            bottom: 5px;
-            right: 5px;
-        }
-
+        .navbar { position: fixed; top: 0; left: 0; right: 0; background: white; border-bottom: 1px solid #e0e0e0; padding: 16px 6vw; display: flex; align-items: center; justify-content: space-between; z-index: 100; }
+        .logo { display: flex; align-items: center; gap: 10px; font-family: "Instrument Sans", sans-serif; font-size: 16px; font-weight: 700; letter-spacing: -0.5px; }
+        .logo-mark { width: 24px; height: 24px; background: #000; position: relative; }
+        .logo-mark::before { content: ""; position: absolute; width: 6px; height: 6px; background: #FF6B35; top: 5px; left: 5px; }
+        .logo-mark::after { content: ""; position: absolute; width: 6px; height: 6px; background: white; bottom: 5px; right: 5px; }
         .nav-links { display: flex; gap: 40px; font-size: 13px; color: #666; font-weight: 500; }
         .nav-links a:hover { color: #000; }
-        .nav-button {
-            background: #000;
-            color: white;
-            border: none;
-            border-radius: 0;
-            padding: 10px 18px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
+        .nav-button { display: inline-block; background: #000; color: white; border: none; border-radius: 0; padding: 10px 18px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; }
 
         /* HERO */
-        .hero {
-            padding: 140px 0 80px 0;
-            display: grid;
-            grid-template-columns: 45% 55%;
-            align-items: stretch;
-            gap: 0;
-            position: relative;
-            min-height: 650px;
-        }
-
-        .hero-text {
-            padding: 60px 6vw 60px 6vw;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .eyebrow {
-            display: block;
-            font-size: 11px;
-            font-weight: 600;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-        }
-
-        .hero h1 {
-            font-family: "Instrument Sans", sans-serif;
-            font-size: clamp(48px, 5vw, 72px);
-            line-height: 1.15;
-            letter-spacing: -2px;
-            margin-bottom: 30px;
-            font-weight: 700;
-        }
-
-        .hero h1 span {
-            color: #FF6B35;
-        }
-
-        .hero-description {
-            font-size: 16px;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            max-width: 480px;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 16px;
-        }
-
-        .primary-button, .secondary-button {
-            padding: 13px 24px;
-            border-radius: 0;
-            font-size: 13px;
-            font-weight: 600;
-            border: none;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .primary-button {
-            background: #000;
-            color: white;
-        }
-
-        .secondary-button {
-            background: transparent;
-            border: 2px solid #000;
-            color: #000;
-        }
-
+        .hero { padding: 140px 0 80px 0; display: grid; grid-template-columns: 45% 55%; align-items: stretch; gap: 0; position: relative; min-height: 650px; }
+        .hero-text { padding: 60px 6vw 60px 6vw; display: flex; flex-direction: column; justify-content: center; }
+        .eyebrow { display: block; font-size: 11px; font-weight: 600; color: #666; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; }
+        .hero h1 { font-family: "Instrument Sans", sans-serif; font-size: clamp(48px, 5vw, 72px); line-height: 1.15; letter-spacing: -2px; margin-bottom: 30px; font-weight: 700; }
+        .hero h1 span { color: #FF6B35; }
+        .hero-description { font-size: 16px; color: #555; line-height: 1.8; margin-bottom: 40px; max-width: 480px; }
+        .hero-actions { display: flex; gap: 16px; }
+        .primary-button, .secondary-button { display: inline-block; text-align: center; padding: 13px 24px; border-radius: 0; font-size: 13px; font-weight: 600; border: none; letter-spacing: 0.5px; text-transform: uppercase; }
+        .primary-button { background: #000; color: white; }
+        .secondary-button { background: transparent; border: 2px solid #000; color: #000; }
         .secondary-button:hover { background: #f5f5f5; }
-
-        .hero-visual {
-            background: linear-gradient(135deg, #f0f0f0 0%, #e5e5e5 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-size: 14px;
-            text-align: center;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-        }
+        .hero-visual { background: linear-gradient(135deg, #f0f0f0 0%, #e5e5e5 100%); display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px; text-align: center; padding: 40px; position: relative; overflow: hidden; }
 
         /* PERSONA SECTION */
-        .personas {
-            padding: 100px 6vw;
-            background: #fff;
-        }
-
-        .section-label {
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 10px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .section-header {
-            margin-bottom: 80px;
-        }
-
-        .section-header h2 {
-            font-family: "Instrument Sans", sans-serif;
-            font-size: clamp(42px, 5.5vw, 64px);
-            line-height: 1.15;
-            letter-spacing: -2px;
-            margin-bottom: 15px;
-        }
-
-        .section-header h2 span {
-            color: #FF6B35;
-        }
-
-        .section-header p {
-            color: #666;
-            font-size: 16px;
-            line-height: 1.7;
-            max-width: 550px;
-        }
-
-        .personas-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 60px;
-        }
-
-        .persona-card {
-            background: transparent;
-            border: none;
-            padding: 0;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 50px;
-            align-items: start;
-            overflow: visible;
-        }
-
-        .persona-card:nth-child(even) {
-            grid-template-columns: 1fr 280px;
-            direction: rtl;
-        }
-
-        .persona-card:nth-child(even) > * {
-            direction: ltr;
-        }
-
-        .persona-image-placeholder {
-            width: 280px;
-            height: 280px;
-            background: #e8e8e8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-size: 13px;
-            text-align: center;
-            flex-shrink: 0;
-            font-weight: 500;
-        }
-
-        .persona-wrapper {
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            padding-top: 20px;
-        }
-
-        .persona-content h3 {
-            font-family: "Instrument Sans", sans-serif;
-            font-size: 28px;
-            margin-bottom: 16px;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .persona-tag {
-            display: block;
-            font-size: 10px;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .persona-content p {
-            font-size: 16px;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .persona-need {
-            font-size: 14px;
-            color: #666;
-            padding: 0;
-            background: transparent;
-            border: none;
-            border-left: 3px solid #FF6B35;
-            border-radius: 0;
-            margin-top: 0;
-            padding-left: 20px;
-        }
-
-        .persona-need strong {
-            color: #000;
-        }
+        .personas { padding: 100px 6vw; background: #fff; }
+        .section-label { color: #666; text-transform: uppercase; letter-spacing: 2px; font-size: 10px; font-weight: 600; margin-bottom: 20px; }
+        .section-header { margin-bottom: 80px; }
+        .section-header h2 { font-family: "Instrument Sans", sans-serif; font-size: clamp(42px, 5.5vw, 64px); line-height: 1.15; letter-spacing: -2px; margin-bottom: 15px; }
+        .section-header h2 span { color: #FF6B35; }
+        .section-header p { color: #666; font-size: 16px; line-height: 1.7; max-width: 550px; }
+        .personas-grid { display: grid; grid-template-columns: 1fr; gap: 60px; }
+        .persona-card { background: transparent; border: none; padding: 0; display: grid; grid-template-columns: 280px 1fr; gap: 50px; align-items: start; overflow: visible; }
+        .persona-card:nth-child(even) { grid-template-columns: 1fr 280px; direction: rtl; }
+        .persona-card:nth-child(even) > * { direction: ltr; }
+        .persona-image-placeholder { width: 280px; height: 280px; background: #e8e8e8; flex-shrink: 0; overflow: hidden; }
+        .persona-image-placeholder svg { display: block; width: 100%; height: 100%; }
+        .persona-wrapper { padding: 0; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 20px; }
+        .persona-content h3 { font-family: "Instrument Sans", sans-serif; font-size: 28px; margin-bottom: 16px; font-weight: 700; line-height: 1.2; }
+        .persona-tag { display: block; font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px; font-weight: 600; }
+        .persona-content p { font-size: 16px; color: #555; line-height: 1.8; margin-bottom: 20px; }
+        .persona-need { font-size: 14px; color: #666; padding: 0 0 0 20px; background: transparent; border: none; border-left: 3px solid #FF6B35; border-radius: 0; margin-top: 0; }
+        .persona-need strong { color: #000; }
 
         /* SIMPLE VALUE PROP */
-        .value-prop {
-            padding: 100px 6vw;
-            background: #000;
-            color: white;
-        }
-
-        .value-prop .section-label {
-            color: #666;
-        }
-
-        .value-prop h2 {
-            font-family: "Instrument Sans", sans-serif;
-            font-size: clamp(44px, 6vw, 72px);
-            line-height: 1.1;
-            letter-spacing: -2px;
-            max-width: 700px;
-            margin-bottom: 60px;
-        }
-
+        .value-prop { padding: 100px 6vw; background: #000; color: white; }
+        .value-prop .section-label { color: #999; }
+        .value-prop h2 { font-family: "Instrument Sans", sans-serif; font-size: clamp(44px, 6vw, 72px); line-height: 1.1; letter-spacing: -2px; max-width: 700px; margin-bottom: 60px; }
         .value-prop h2 span { color: #FF6B35; }
-
-        .value-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 60px 80px;
-            margin-top: 0;
-        }
-
-        .value-item {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .value-item h3 {
-            font-family: "Instrument Sans", sans-serif;
-            font-size: 22px;
-            margin-bottom: 0;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .value-item p {
-            color: #aaa;
-            font-size: 15px;
-            line-height: 1.8;
-        }
+        .value-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px 80px; margin-top: 0; }
+        .value-item { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .value-item h3 { font-family: "Instrument Sans", sans-serif; font-size: 22px; margin-bottom: 0; font-weight: 700; line-height: 1.2; }
+        .value-item p { color: #aaa; font-size: 15px; line-height: 1.8; }
 
         /* PROCESS */
-        .process {
-            padding: 100px 6vw;
-            background: #f8f8f8;
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 24px;
-            margin-top: 60px;
-        }
-
-        .process-card {
-            padding: 0;
-            background: transparent;
-            border: none;
-        }
-
-        .process-card::before {
-            content: "";
-            display: block;
-            width: 2px;
-            height: 40px;
-            background: #FF6B35;
-            margin-bottom: 30px;
-        }
-
-        .process-number {
-            font-size: 11px;
-            color: #999;
-            font-weight: 600;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        .process-card h3 {
-            font-family: "Instrument Sans", sans-serif;
-            font-size: 18px;
-            margin-bottom: 12px;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-
-        .process-card p {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.7;
-        }
+        .process { padding: 100px 6vw; background: #f8f8f8; }
+        .process-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; margin-top: 60px; }
+        .process-card { padding: 0; background: transparent; border: none; }
+        .process-card::before { content: ""; display: block; width: 2px; height: 40px; background: #FF6B35; margin-bottom: 30px; }
+        .process-number { font-size: 11px; color: #666; font-weight: 600; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1.5px; }
+        .process-card h3 { font-family: "Instrument Sans", sans-serif; font-size: 18px; margin-bottom: 12px; font-weight: 700; line-height: 1.3; }
+        .process-card p { font-size: 14px; color: #666; line-height: 1.7; }
 
         /* CTA */
-        .cta {
-            margin: 0;
-            border-radius: 0;
-            background: #FF6B35;
-            padding: 100px 6vw;
-            text-align: left;
-        }
-
-        .cta h2 {
-            font-family: "Instrument Sans", sans-serif;
-            font-size: clamp(42px, 6vw, 68px);
-            line-height: 1.1;
-            letter-spacing: -2px;
-            margin-bottom: 30px;
-            max-width: 700px;
-            color: white;
-        }
-
-        .cta p {
-            max-width: 500px;
-            margin: 0 0 40px 0;
-            color: rgba(255,255,255,0.9);
-            font-size: 16px;
-            line-height: 1.8;
-        }
-
-        .cta button {
-            background: white;
-            color: #FF6B35;
-            border: none;
-            padding: 13px 24px;
-            border-radius: 0;
-            font-weight: 600;
-            font-size: 12px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .cta button:hover {
-            background: #f5f5f5;
-        }
+        .cta { margin: 0; border-radius: 0; background: #FF6B35; padding: 100px 6vw; text-align: left; }
+        .cta h2 { font-family: "Instrument Sans", sans-serif; font-size: clamp(42px, 6vw, 68px); line-height: 1.1; letter-spacing: -2px; margin-bottom: 30px; max-width: 700px; color: #000; }
+        .cta p { max-width: 500px; margin: 0 0 40px 0; color: #000; font-size: 16px; line-height: 1.8; }
+        .cta p.alt { margin: 18px 0 0; font-size: 14px; }
+        .cta p.alt a { text-decoration: underline; }
+        .cta-button { display: inline-block; background: #000; color: #fff; border: none; padding: 13px 24px; border-radius: 0; font-weight: 600; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
+        .cta-button:hover { background: #222; }
 
         /* FOOTER */
-        footer {
-            padding: 60px 6vw 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            color: #999;
-            font-size: 12px;
-            background: #fff;
-            border-top: 1px solid #e0e0e0;
-        }
+        footer { padding: 60px 6vw 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; color: #666; font-size: 12px; background: #fff; border-top: 1px solid #e0e0e0; }
+        .footer-logo { color: #000; font-weight: 700; font-size: 13px; margin-bottom: 16px; letter-spacing: 0.5px; text-transform: uppercase; }
+        .footer-content { line-height: 1.8; font-size: 13px; }
+        .footer-content a { color: #666; text-decoration: underline; }
 
-        .footer-logo {
-            color: #000;
-            font-weight: 700;
-            font-size: 13px;
-            margin-bottom: 16px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
+        /* DIALOG */
+        dialog { border: 2px solid #000; padding: 32px; max-width: 480px; width: 90%; margin: auto; }
+        dialog::backdrop { background: rgba(0,0,0,.5); }
+        dialog h3 { font-family: "Instrument Sans", sans-serif; font-size: 22px; margin-bottom: 10px; }
+        dialog p { color: #555; margin-bottom: 20px; }
+        dialog button { background: #000; color: #fff; border: none; padding: 12px 22px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
 
-        .footer-content {
-            line-height: 1.8;
-            font-size: 13px;
-        }
+        #cdlg .email { display: block; font-family: "Instrument Sans", sans-serif; font-size: clamp(20px, 5vw, 26px); font-weight: 700; margin-bottom: 22px; word-break: break-all; user-select: all; }
+        #cdlg .row { display: flex; flex-wrap: wrap; gap: 10px; }
+        #cdlg .row a, #cdlg .row button { display: inline-block; padding: 12px 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; border: 2px solid #000; background: #000; color: #fff; }
+        #cdlg .row .ghost { background: transparent; color: #000; }
+
+        /* PULSE CHECK + REQUEST FORM */
+        dialog { max-height: 90vh; overflow: auto; }
+        #pdlg, #rdlg { max-width: 640px; }
+        dialog .hint { font-size: 13px; color: #666; margin-bottom: 18px; }
+        #pdlg fieldset { border: 0; margin: 0 0 16px; padding: 0; }
+        #pdlg legend { font-size: 14px; color: #555; margin-bottom: 8px; }
+        #pdlg legend b { display: block; color: #000; font-size: 15px; }
+        .scale { display: flex; gap: 8px; }
+        .scale label { position: relative; cursor: pointer; }
+        .scale input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+        .scale span { display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; border: 2px solid #000; font-weight: 600; }
+        .scale input:checked + span { background: #000; color: #fff; }
+        .scale input:focus-visible + span { outline: 3px solid #FF6B35; outline-offset: 2px; }
+        .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+        dialog .actions button { border: 2px solid #000; }
+        dialog .actions .ghost { background: transparent; color: #000; }
+        .msg { color: #B8420F; font-size: 14px; margin-top: 10px; min-height: 20px; }
+        .bar { display: grid; grid-template-columns: 150px 1fr; gap: 12px; align-items: center; margin-bottom: 8px; font-size: 14px; }
+        .bar div { background: #eee; }
+        .bar i { display: block; height: 12px; background: #FF6B35; }
+        #pres h4 { font-family: "Instrument Sans", sans-serif; font-size: 26px; margin-bottom: 4px; }
+        #pres p { margin: 14px 0 18px; }
+        #rdlg label.f { display: block; font-size: 14px; font-weight: 600; margin-bottom: 14px; }
+        #rdlg input, #rdlg textarea { display: block; width: 100%; margin-top: 6px; padding: 10px; border: 2px solid #000; font: inherit; font-weight: 400; }
+        #rnote textarea { height: 120px; margin-top: 8px; }
+
+        /* ASSESSMENT STEPS */
+        .pgrid { display: grid; gap: 10px; margin-bottom: 16px; }
+        .pick { display: flex; align-items: center; gap: 14px; text-align: left; border: 2px solid #000; background: #fff; color: #000; padding: 10px; font: inherit; font-weight: 400; letter-spacing: 0; text-transform: none; cursor: pointer; width: 100%; }
+        .pick:hover { background: #f6f6f4; }
+        .pick b { display: block; font-size: 15px; }
+        .pick small { display: block; color: #666; font-size: 13px; }
+        .pav { width: 56px; height: 56px; flex: none; }
+        .pav svg, .pav img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        #pres h3 { margin-bottom: 4px; }
+        #pres h4 { font-family: "Instrument Sans", sans-serif; font-size: 16px; margin: 20px 0 8px; }
+        #pres ol { margin: 0 0 8px 20px; font-size: 15px; }
+        #pres ol li { margin-bottom: 6px; }
+        .bar2 { margin-bottom: 10px; font-size: 14px; }
+        .bar2 div { background: #eee; margin-top: 4px; }
+        .bar2 i { display: block; height: 10px; background: #FF6B35; }
+        #pres label.f { display: block; font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+        #pres input, #pres textarea { display: block; width: 100%; margin-top: 6px; padding: 10px; border: 2px solid #000; font: inherit; font-weight: 400; }
+        #pnote textarea { height: 150px; }
 
         /* RESPONSIVE */
         @media (max-width: 1000px) {
             .nav-links { display: none; }
             .hero { grid-template-columns: 1fr; padding: 140px 0 60px 0; }
             .hero-text { padding: 40px 6vw; }
-            .hero-visual { grid-column: span 1; }
+            .hero-visual { grid-column: span 1; min-height: 300px; }
             .personas-grid { gap: 40px; }
             .persona-card { grid-template-columns: 1fr; gap: 30px; }
             .persona-card:nth-child(even) { grid-template-columns: 1fr; }
@@ -495,23 +168,23 @@
             .process-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
             footer { grid-template-columns: 1fr; gap: 40px; }
         }
-
         @media (max-width: 600px) {
             .navbar { padding: 12px 6vw; }
-            .nav-button { display: none; }
+            .nav-button { padding: 8px 12px; font-size: 11px; }
             .hero { padding-top: 120px; }
             .personas, .value-prop, .process, .cta { padding-left: 6vw; padding-right: 6vw; }
             .hero-actions { flex-direction: column; }
-            .hero-actions button { width: 100%; }
+            .hero-actions a { width: 100%; }
             .section-header h2 { font-size: clamp(32px, 5vw, 44px); }
             .process-grid { grid-template-columns: 1fr; }
+            .bar { grid-template-columns: 110px 1fr; }
         }
     </style>
 </head>
 <body>
 
     <!-- NAVIGATION -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main">
         <a href="#" class="logo">
             <div class="logo-mark"></div>
             PULSE DIGITAL INDEX
@@ -521,9 +194,7 @@
             <a href="#how">How It Works</a>
             <a href="#cta">Get Started</a>
         </div>
-        <button class="nav-button" onclick="openAssessment()">
-            Request Assessment
-        </button>
+        <a class="nav-button" data-open="request" href="#cta">Request Assessment</a>
     </nav>
 
     <!-- HERO -->
@@ -538,15 +209,11 @@
                 Most organizations can't clearly see what's working and what's holding them back. PDI gives you that clarity.
             </p>
             <div class="hero-actions">
-                <button class="primary-button" onclick="openAssessment()">
-                    Take the Assessment
-                </button>
-                <button class="secondary-button" onclick="scrollTo('personas')">
-                    See Who It's For
-                </button>
+                <a class="primary-button" data-open="pulse" href="#cta">Take the Assessment</a>
+                <a class="secondary-button" href="#personas">See Who It's For</a>
             </div>
         </div>
-        <div class="hero-visual" style="background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop') center/cover;">
+        <div class="hero-visual" role="img" aria-label="Colleagues working together" style="background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop') center/cover;">
         </div>
     </section>
 
@@ -554,22 +221,22 @@
     <section class="personas" id="personas">
         <div class="section-label">Who It's For</div>
         <div class="section-header">
-            <h2>Built from real <span>conversations</span></h2>
-            <p>PDI is designed around actual users and the problems they face.</p>
+            <h2>Grounded in <span>field research</span></h2>
+            <p>PDI is designed around the real people who use digital services and the problems they face. Each profile is a working hypothesis that we confirm with field evidence.</p>
         </div>
 
         <div class="personas-grid">
 
-            <!-- Persona 1: Older User -->
+            <!-- Persona 1: Retired, Low Digital Literacy User -->
             <div class="persona-card">
-                <div class="persona-image-placeholder" style="background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop') center/cover; color: transparent;">[Add real photo]</div>
+                <div class="persona-image-placeholder" data-i="0" role="img"></div>
                 <div class="persona-wrapper">
                     <div class="persona-content">
-                        <div class="persona-tag">Retired / Low Digital Literacy</div>
-                        <h3>"Did it work?"</h3>
-                        <p>Needs unmistakable confirmation. Won't trust a subtle icon. Lives on fixed income, so mistakes feel costly.</p>
+                        <div class="persona-tag">“Did it work?”</div>
+                        <h3>Retired, Low Digital Literacy User</h3>
+                        <p>Needs unmistakable confirmation. Won't trust a subtle icon. Lives on a fixed income, so mistakes feel costly.</p>
                         <div class="persona-need">
-                            <strong>The barrier:</strong> They repeat actions, ask for verification, or skip digital entirely. Confirmation design has to earn their trust.
+                            <strong>The barrier:</strong> They repeat actions, ask for verification, or skip digital entirely. Small text and no clear path to a human make it harder, and help that talks down to them costs trust.
                         </div>
                     </div>
                 </div>
@@ -577,14 +244,14 @@
 
             <!-- Persona 2: Tech-Native Student -->
             <div class="persona-card">
-                <div class="persona-image-placeholder" style="background: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop') center/cover; color: transparent;">[Add real photo]</div>
+                <div class="persona-image-placeholder" data-i="1" role="img"></div>
                 <div class="persona-wrapper">
                     <div class="persona-content">
-                        <div class="persona-tag">Young, Smartphone-First</div>
-                        <h3>"This feels clunky"</h3>
+                        <div class="persona-tag">“This feels clunky”</div>
+                        <h3>Tech-Native Student</h3>
                         <p>Benchmarks everything against fintech apps. Wants speed, social features, and visible progress toward goals.</p>
                         <div class="persona-need">
-                            <strong>The barrier:</strong> Slow loading or clunky onboarding feels like a product failure. They abandon fast.
+                            <strong>The barrier:</strong> Slow loading or clunky onboarding feels like a product failure, so they abandon fast. With no way to split payments or save with friends, they fall back to WhatsApp or M-Pesa.
                         </div>
                     </div>
                 </div>
@@ -592,14 +259,14 @@
 
             <!-- Persona 3: SME Owner -->
             <div class="persona-card">
-                <div class="persona-image-placeholder" style="background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop') center/cover; color: transparent;">[Add real photo]</div>
+                <div class="persona-image-placeholder" data-i="2" role="img"></div>
                 <div class="persona-wrapper">
                     <div class="persona-content">
-                        <div class="persona-tag">Small Business Owner</div>
-                        <h3>"What's my margin?"</h3>
+                        <div class="persona-tag">“What’s my margin?”</div>
+                        <h3>SME Owner</h3>
                         <p>Thinks in profit and loss daily. Every fee and every friction point feels like a direct cost to the business.</p>
                         <div class="persona-need">
-                            <strong>The barrier:</strong> Can't see profit at a glance. Platform fees don't flex with seasonal cash flow.
+                            <strong>The barrier:</strong> Can't see profit at a glance or keep business and personal money apart. Fixed repayments and fees don't flex with seasonal cash flow.
                         </div>
                     </div>
                 </div>
@@ -607,14 +274,14 @@
 
             <!-- Persona 4: Corporate Accountant -->
             <div class="persona-card">
-                <div class="persona-image-placeholder" style="background: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop') center/cover; color: transparent;">[Add real photo]</div>
+                <div class="persona-image-placeholder" data-i="3" role="img"></div>
                 <div class="persona-wrapper">
                     <div class="persona-content">
-                        <div class="persona-tag">Finance Professional</div>
-                        <h3>"Can I audit this?"</h3>
+                        <div class="persona-tag">“Can I audit this?”</div>
+                        <h3>Corporate Accountant</h3>
                         <p>Every number may be audited later. Needs approval workflows and clear audit trails for large transactions.</p>
                         <div class="persona-need">
-                            <strong>The barrier:</strong> Missing approvals force workarounds. Slow bulk actions compound at scale.
+                            <strong>The barrier:</strong> Missing approvals force workarounds and leave them personally exposed. Slow bulk actions compound at scale.
                         </div>
                     </div>
                 </div>
@@ -622,14 +289,14 @@
 
             <!-- Persona 5: Diaspora User -->
             <div class="persona-card">
-                <div class="persona-image-placeholder" style="background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop') center/cover; color: transparent;">[Add real photo]</div>
+                <div class="persona-image-placeholder" data-i="4" role="img"></div>
                 <div class="persona-wrapper">
                     <div class="persona-content">
-                        <div class="persona-tag">Sends Money Home</div>
-                        <h3>"What will they get?"</h3>
+                        <div class="persona-tag">“What will they get?”</div>
+                        <h3>Diaspora User</h3>
                         <p>Can't verify in person. Fees and rates matter because they determine what actually arrives. No branch fallback.</p>
                         <div class="persona-need">
-                            <strong>The barrier:</strong> Transfer confirmation only proves money moved, not that it was used as intended. Trust built entirely on screen.
+                            <strong>The barrier:</strong> Can't verify the fee, rate or timeline before sending, or confirm the transfer landed. Trust is built entirely on screen.
                         </div>
                     </div>
                 </div>
@@ -701,9 +368,7 @@
         <p>
             Let's talk. We'll spend time understanding your organization, your teams, and the real barriers they face. Then we'll show you exactly where to focus first.
         </p>
-        <button onclick="openAssessment()">
-            Start a Conversation
-        </button>
+        <a class="cta-button" data-contact="conversation" href="mailto:isaac@snapp.co.ke?subject=PDI%20conversation">Start a Conversation</a>
     </section>
 
     <!-- FOOTER -->
@@ -711,45 +376,278 @@
         <div>
             <div class="footer-logo">PULSE DIGITAL INDEX</div>
             <div class="footer-content">
-                Built by talking to real people. Designed for real organizations. Made to move the needle.
+                Built from field research. Designed for real organizations. Made to move the needle.
             </div>
         </div>
         <div class="footer-content">
             © 2026 Pulse Digital Index<br><br>
-            <a href="#" style="color: #999;">Privacy</a> · <a href="#" style="color: #999;">Terms</a> · <a href="#" style="color: #999;">Contact</a>
+            <a href="#" data-dlg="privacy">Privacy</a> · <a href="#" data-dlg="terms">Terms</a> · <a href="#cta">Contact</a>
         </div>
     </footer>
 
+    <dialog id="pdlg" aria-labelledby="pt">
+        <h3 id="pt">Take the assessment</h3>
+        <div id="pstep1">
+            <p class="hint">Step 1 of 3. Which best describes you?</p>
+            <div class="pgrid" id="pp"></div>
+            <div class="actions"><button type="button" class="ghost" id="pclose">Close</button></div>
+        </div>
+        <div id="pform" hidden>
+            <p class="hint" id="phint"></p>
+            <div id="pq"></div>
+            <div class="actions"><button type="button" id="pgo">Show my results</button><button type="button" class="ghost" id="pback">Back</button></div>
+            <p class="msg" id="pmsg" role="alert"></p>
+        </div>
+        <div id="pres" hidden></div>
+    </dialog>
+
+    <dialog id="rdlg" aria-labelledby="rt">
+        <h3 id="rt">Request an assessment</h3>
+        <form id="rform">
+            <p class="hint">Tell us a little about your organization. Sending opens an email to the PDI team with your details filled in.</p>
+            <label class="f">Your name<input name="name" required autocomplete="name"></label>
+            <label class="f">Organization<input name="org" required autocomplete="organization"></label>
+            <label class="f">Your email<input name="email" type="email" required autocomplete="email"></label>
+            <label class="f">What do you want to understand?<textarea name="goal" rows="3" placeholder="For example: why customers drop off in our app"></textarea></label>
+            <div class="actions"><button type="submit">Send request</button><button type="button" class="ghost" id="rclose">Close</button></div>
+        </form>
+        <div id="rnote" hidden>
+            <p>Your email app should open with the request ready to send. If nothing opened, copy the message below and send it to <b>isaac@snapp.co.ke</b>.</p>
+            <textarea id="rmsg" readonly></textarea>
+            <div class="actions"><button type="button" id="rdone">Done</button></div>
+        </div>
+    </dialog>
+
+    <dialog id="cdlg" aria-labelledby="ct">
+        <h3 id="ct"></h3>
+        <p id="cp">Email the PDI team at:</p>
+        <span class="email" id="ce">isaac@snapp.co.ke</span>
+        <div class="row">
+            <button id="ccopy" type="button">Copy email</button>
+            <a id="copen" href="mailto:isaac@snapp.co.ke">Open email app</a>
+            <button id="cclose" class="ghost" type="button">Close</button>
+        </div>
+    </dialog>
+
+    <dialog id="dlg" aria-labelledby="dt"><h3 id="dt"></h3><p id="db"></p><button id="dc">Close</button></dialog>
+
     <script>
-        function scrollTo(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        // Persona portraits (illustrations). Used only as a fallback if a photo fails to load.
+        const D = [
+            { bg: "#FFE3D6", skin: "#B9835C", top: "#5B5B5B", hair: '<path d="M40 50a20 20 0 0 1 40 0q-20-9-40 0z" fill="#D8D8D8"/>', acc: '<g fill="none" stroke="#000" stroke-width="2.5"><circle cx="51" cy="54" r="7"/><circle cx="69" cy="54" r="7"/><path d="M58 54h4"/></g>', n: "Illustration of an older man with glasses" },
+            { bg: "#EDEDEA", skin: "#8D5A3B", top: "#FF6B35", hair: '<path d="M40 50a20 20 0 0 1 40 0q-20-12-40 0z" fill="#111"/>', acc: '<path d="M38 54a22 22 0 0 1 44 0" fill="none" stroke="#000" stroke-width="4"/><rect x="34" y="50" width="8" height="15" rx="3"/><rect x="78" y="50" width="8" height="15" rx="3"/>', n: "Illustration of a young person wearing headphones" },
+            { bg: "#FFE3D6", skin: "#D9A074", top: "#777", front: '<path d="M42 88h36v32H42z" fill="#FF6B35"/>', hair: '<path d="M38 48a22 22 0 0 1 44 0z" fill="#000"/><path d="M60 48h28q0 7-11 7H60z" fill="#000"/>', acc: "", n: "Illustration of a business owner in a cap and apron" },
+            { bg: "#EDEDEA", skin: "#E0AC82", top: "#000", hair: '<path d="M40 50a20 20 0 0 1 40 0q-20-8-40 0z" fill="#3a2a1f"/>', acc: '<g fill="none" stroke="#000" stroke-width="2.5"><rect x="43" y="49" width="14" height="10"/><rect x="63" y="49" width="14" height="10"/><path d="M57 54h6"/></g>', front: '<path d="M48 84l12 14 12-14z" fill="#fff"/><path d="M57 90l3 22 3-22z" fill="#FF6B35"/>', n: "Illustration of an accountant in a suit and tie" },
+            { bg: "#FFE3D6", skin: "#A8704A", top: "#444", back: '<path d="M38 52a22 22 0 0 1 44 0v26q-6 4-10-4V58H48v16q-4 8-10 4z" fill="#1a1a1a"/>', hair: '<path d="M40 50a20 20 0 0 1 40 0q-20-9-40 0z" fill="#1a1a1a"/>', acc: '<g fill="#fff" stroke="#000" stroke-width="2"><circle cx="97" cy="24" r="13"/><ellipse cx="97" cy="24" rx="5" ry="13" fill="none"/><path d="M84 24h26" fill="none"/></g>', n: "Illustration of a person abroad with a globe badge" }
+        ];
+
+        function art(d) {
+            return '<svg viewBox="0 0 120 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="120" height="120" fill="' + d.bg + '"/>' + (d.back || "") +
+                '<path d="M18 120c0-28 18-40 42-40s42 12 42 40z" fill="' + d.top + '"/><rect x="53" y="68" width="14" height="16" fill="' + d.skin + '"/>' +
+                '<circle cx="60" cy="52" r="20" fill="' + d.skin + '"/>' + d.hair +
+                '<circle cx="52" cy="54" r="2" fill="#000"/><circle cx="68" cy="54" r="2" fill="#000"/>' +
+                '<path d="M53 63q7 6 14 0" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"/>' + d.acc + (d.front || "") + '</svg>';
         }
 
-        function openAssessment() {
-            alert(
-                "Assessment request form coming soon.\n\n" +
-                "Thank you for your interest in PDI."
-            );
-        }
+        // Persona photos from the local Assets folder (same order as the persona cards).
+        // Keep index.html in the same folder as Assets/ and match the file names exactly.
+        // If a photo fails to load, the illustration above is shown instead.
+        const PHOTOS = [
+            'Assets/Low%20Literacy%20.jpeg',     // Retired, Low Digital Literacy User
+            'Assets/Tech-Native.jpeg',           // Tech-Native Student
+            'Assets/SME%20owner.jpeg',           // SME Owner
+            'Assets/Corporate%20Officer.jpeg',   // Corporate Accountant
+            'Assets/diaspora%20user.jpeg'        // Diaspora User
+        ];
+        const WHO = ['retired, low digital literacy user', 'tech-native student', 'SME owner', 'corporate accountant', 'diaspora user'];
+        const thumb = i => '<img src="' + PHOTOS[i] + '" alt="" onerror="this.outerHTML=art(D[' + i + '])">';
 
-        // Fade in effect
-        const cards = document.querySelectorAll('.persona-card, .process-card');
-        cards.forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'all 0.6s ease';
+        document.querySelectorAll('.persona-image-placeholder').forEach(el => {
+            const i = +el.dataset.i, d = D[i];
+            el.innerHTML = art(d);
+            el.setAttribute('aria-label', d.n);
+            const img = new Image();
+            img.alt = 'Photo representing the ' + WHO[i] + ' persona';
+            img.style.cssText = 'display:block;width:100%;height:100%;object-fit:cover';
+            img.onload = () => { el.textContent = ''; el.removeAttribute('role'); el.removeAttribute('aria-label'); el.appendChild(img); };
+            img.src = PHOTOS[i];
         });
 
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
+        // Assessment: choose a persona, answer that persona's questions, send the results
+        const $ = id => document.getElementById(id);
+        const PQ = [
+            ["Retired, Low Digital Literacy User", "\u201CDid it work?\u201D", [
+                "I can\u2019t always tell whether a transaction went through.",
+                "A small mistake makes me stop or give up on the task.",
+                "I need a family member or an agent for basic tasks like checking a balance.",
+                "Small text, crowded screens or unfamiliar icons are hard for me.",
+                "I don\u2019t know how to reach a person when I\u2019m stuck.",
+                "Help text or support makes me feel talked down to."]],
+            ["Tech-Native Student", "\u201CThis feels clunky\u201D", [
+                "I give up on signing up when it is slow or needs a branch visit or paperwork.",
+                "The app feels clunky or old-fashioned next to other money apps.",
+                "I lose interest because I only see a balance, not progress toward a goal.",
+                "I get stuck and can only fix it by calling an agent or going to a branch.",
+                "I use WhatsApp or M-Pesa to split payments or save with friends.",
+                "Fees or minimum balances don\u2019t suit small balances and frequent small payments."]],
+            ["SME Owner", "\u201CWhat\u2019s my margin?\u201D", [
+                "I can\u2019t keep business and personal money apart.",
+                "I can\u2019t see my cost, revenue and profit margin at a glance.",
+                "Fees quietly eat into my margin.",
+                "Fixed repayments or fees are hard to carry in slow seasons like January to March.",
+                "I have no emergency reserve or safety net inside the platform.",
+                "I spend time reconciling records that I should spend on the business."]],
+            ["Corporate Accountant", "\u201CCan I audit this?\u201D", [
+                "I struggle to produce an exportable, audit-ready statement when asked.",
+                "Large transactions can go through without an approval step.",
+                "Bulk actions like batch payments or reconciliation are slow or missing.",
+                "I feel personally exposed when a large transaction has no confirmation step.",
+                "I can\u2019t quickly rebuild the audit trail for a transaction or period."]],
+            ["Diaspora User", "\u201CWhat will they get?\u201D", [
+                "I can\u2019t check the fee, exchange rate or timeline before I send.",
+                "I have to re-enter recipient details every time.",
+                "Time zones or poor connections limit when I can get help.",
+                "I get stuck on identity checks or disputes because there is no branch to visit.",
+                "I can\u2019t confirm that a transfer reached the other end.",
+                "The platform feels less trustworthy because there is no branch to visit."]]
+        ];
+        $('pp').innerHTML = PQ.map((p, i) => '<button type="button" class="pick" data-i="' + i + '"><span class="pav">' + thumb(i) + '</span><span><b>' + p[0] + '</b><small>' + p[1] + '</small></span></button>').join('') +
+            '<button type="button" class="pick" id="pother"><span><b>None of these fit me</b><small>Tell us about your situation instead</small></span></button>';
 
-        cards.forEach(card => observer.observe(card));
+        let cp = 0;
+        function startQuestions(i) {
+            cp = i;
+            $('phint').innerHTML = 'Step 2 of 3. <b>' + PQ[i][0] + '</b>: how often does each of these happen to you? 1 = never, 5 = very often.';
+            $('pq').innerHTML = PQ[i][2].map((q, j) => '<fieldset><legend><b>' + q + '</b></legend><div class="scale">' +
+                [1, 2, 3, 4, 5].map(n => '<label><input type="radio" name="q' + j + '" value="' + n + '"><span>' + n + '</span></label>').join('') +
+                '</div></fieldset>').join('');
+            $('pstep1').hidden = true; $('pform').hidden = false; $('pmsg').textContent = '';
+        }
+        $('pp').addEventListener('click', e => {
+            const b = e.target.closest('.pick');
+            if (!b) return;
+            if (b.id === 'pother') { $('pdlg').close(); openDlg('rdlg'); return; }
+            startQuestions(+b.dataset.i);
+        });
+        $('pback').addEventListener('click', () => { $('pform').hidden = true; $('pstep1').hidden = false; });
+        $('pclose').addEventListener('click', () => $('pdlg').close());
+
+        $('pgo').addEventListener('click', () => {
+            const qs = PQ[cp][2];
+            const v = qs.map((q, j) => { const c = document.querySelector('input[name="q' + j + '"]:checked'); return c ? +c.value : 0; });
+            if (v.includes(0)) { $('pmsg').textContent = 'Please answer all ' + qs.length + ' questions to see your results.'; return; }
+            const top = v.map((x, j) => [x, j]).sort((a, b) => b[0] - a[0] || a[1] - b[1]).filter(r => r[0] >= 4).slice(0, 3);
+            const topHtml = top.length
+                ? '<ol>' + top.map(r => '<li>' + qs[r[1]] + '</li>').join('') + '</ol>'
+                : '<p class="hint">None of these happen to you often, which is a good sign. A full assessment can still show where small gains are hiding.</p>';
+            const bars = qs.map((q, j) => '<div class="bar2"><span>' + q + '</span><div><i style="width:' + v[j] * 20 + '%"></i></div></div>').join('');
+            $('pres').innerHTML = '<h3>Your results</h3><p class="hint">' + PQ[cp][0] + '</p>' +
+                '<h4>Your biggest friction points</h4>' + topHtml +
+                '<h4>All your answers</h4>' + bars +
+                '<h4>Send your results to PDI</h4><p class="hint">Step 3 of 3. Add your details so the team can follow up (optional).</p>' +
+                '<label class="f">Your name<input id="rn" autocomplete="name"></label>' +
+                '<label class="f">Your email<input id="re" type="email" autocomplete="email"></label>' +
+                '<div class="actions"><button type="button" id="psend">Send my results</button><button type="button" class="ghost" id="pagain">Retake</button><button type="button" class="ghost" id="pclose2">Close</button></div>' +
+                '<div id="pnote" hidden><p class="hint">Your email app should open with your results. If nothing opened, copy this message and send it to <b>isaac@snapp.co.ke</b>.</p><textarea id="pmsgbox" readonly></textarea></div>';
+            $('pform').hidden = true; $('pres').hidden = false;
+            $('psend').addEventListener('click', () => {
+                const name = $('rn').value.trim(), email = $('re').value.trim();
+                const body = 'Assessment results\nPersona: ' + PQ[cp][0] + '\nName: ' + (name || '(not given)') + '\nEmail: ' + (email || '(not given)') +
+                    '\n\nHow often each happens (1 = never, 5 = very often):\n' + qs.map((q, j) => (j + 1) + '. ' + q + ' ' + v[j] + '/5').join('\n');
+                $('pmsgbox').value = 'Subject: PDI assessment results\n\n' + body;
+                $('pnote').hidden = false;
+                window.location.href = 'mailto:isaac@snapp.co.ke?subject=' + encodeURIComponent('PDI assessment results') + '&body=' + encodeURIComponent(body);
+            });
+            $('pagain').addEventListener('click', () => openDlg('pdlg'));
+            $('pclose2').addEventListener('click', () => $('pdlg').close());
+        });
+
+        function openDlg(id) {
+            if (id === 'pdlg') { $('pstep1').hidden = false; $('pform').hidden = true; $('pres').hidden = true; }
+            if (id === 'rdlg') { $('rform').hidden = false; $('rnote').hidden = true; }
+            const d = $(id); if (!d.open) d.showModal();
+        }
+        document.querySelectorAll('[data-open]').forEach(a => a.addEventListener('click', e => {
+            e.preventDefault();
+            openDlg(a.dataset.open === 'pulse' ? 'pdlg' : 'rdlg');
+        }));
+
+        $('rform').addEventListener('submit', e => {
+            e.preventDefault();
+            const f = new FormData(e.target);
+            const body = 'Name: ' + f.get('name') + '\nOrganization: ' + f.get('org') + '\nEmail: ' + f.get('email') +
+                '\n\nWhat we want to understand:\n' + (f.get('goal') || '(not specified)');
+            $('rmsg').value = 'Subject: PDI assessment request\n\n' + body;
+            $('rform').hidden = true; $('rnote').hidden = false;
+            window.location.href = 'mailto:isaac@snapp.co.ke?subject=' + encodeURIComponent('PDI assessment request') + '&body=' + encodeURIComponent(body);
+        });
+        $('rclose').addEventListener('click', () => $('rdlg').close());
+        $('rdone').addEventListener('click', () => $('rdlg').close());
+
+        // Contact pop-up: every contact button shows the email address with copy and open options
+        const EMAIL = "isaac@snapp.co.ke";
+        const C = {
+            assessment: ["Request an assessment", "PDI assessment request"],
+            conversation: ["Start a conversation", "PDI conversation"]
+        };
+        document.querySelectorAll('[data-contact]').forEach(a => a.addEventListener('click', e => {
+            e.preventDefault();
+            const c = C[a.dataset.contact];
+            document.getElementById('ct').textContent = c[0];
+            document.getElementById('copen').href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(c[1]);
+            document.getElementById('ccopy').textContent = 'Copy email';
+            document.getElementById('cdlg').showModal();
+        }));
+        document.getElementById('ccopy').addEventListener('click', () => {
+            const b = document.getElementById('ccopy');
+            const done = () => { b.textContent = 'Copied'; };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(EMAIL).then(done, () => {
+                    const r = document.createRange(); r.selectNodeContents(document.getElementById('ce'));
+                    const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); b.textContent = 'Press Ctrl+C to copy';
+                });
+            } else {
+                const r = document.createRange(); r.selectNodeContents(document.getElementById('ce'));
+                const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); b.textContent = 'Press Ctrl+C to copy';
+            }
+        });
+        document.getElementById('cclose').addEventListener('click', () => document.getElementById('cdlg').close());
+
+        // Privacy and Terms pop-ups (replace the text when the real policies are ready)
+        const T = {
+            privacy: ["Privacy", "Our privacy policy is being finalised. For questions about your data, email isaac@snapp.co.ke."],
+            terms: ["Terms", "Our terms of use are being finalised. For questions, email isaac@snapp.co.ke."]
+        };
+        document.querySelectorAll('[data-dlg]').forEach(a => a.addEventListener('click', e => {
+            e.preventDefault();
+            const t = T[a.dataset.dlg];
+            document.getElementById('dt').textContent = t[0];
+            document.getElementById('db').textContent = t[1];
+            document.getElementById('dlg').showModal();
+        }));
+        document.getElementById('dc').addEventListener('click', () => document.getElementById('dlg').close());
+
+        // Fade in effect (skipped when the visitor prefers reduced motion)
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+            const cards = document.querySelectorAll('.persona-card, .process-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s ease';
+            });
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => observer.observe(card));
+        }
     </script>
 
 </body>
